@@ -1,16 +1,39 @@
 (() => {
+	//variables always come first
 	// set up the puzzle pieces and boards
-	//document.querySelector("h1").textContent = "JavaScript Puzzle"
-	//document.querySelector("p").textContent = "Play"
-	let theButton = document.querySelector("#buttonHolder img");
-	//window.addEventListener("load", changeHeaderText);
+	const pieces = ["topLeft", "topRight", "bottomLeft", "bottomRight"];
 
-	function changeHeaderText(){
-	document.querySelector("h1").textContent = "Puzzle with JavaScript"
-	document.querySelector("p").textContent = "Play "
-}
+	let piecesBoard = document.querySelector(".puzzle-pieces"),
+		puzzleBoard = document.querySelector(".puzzle-board"),
+		puzzleSelectors = document.querySelectorAll("#buttonHolder img");
 
-	theButton.addEventListener("click", changeHeaderText);
+		//functions go in the middle
+	function createPuzzlePieces(pictureIndex) {
+		//generate puzzle pieces for left hand side
+		//debugger;
+		pieces.forEach((piece, index) => {
+			let newPuzzlePiece =`<img "id =piece${index}" class="puzzle-image" src="images/${piece + pictureIndex}.jpg" alt="thumbnail">`;
 
-	
+			piecesBoard.innerHTML += newPuzzlePiece;
+		});
+
+		puzzleBoard.style.backgroundImage = `url(images/backGround${pictureIndex}.jpg)`;
+
+
+	}
+
+	function resetPuzzlePieces() {
+		// swap out all the images when clicking on bottom button
+		//debugger;
+		//empty thumbnail container
+		piecesBoard.innerHTML = "";
+		createPuzzlePieces(this.dataset.puzzleref);
+	}
+
+	// event handling down here
+	puzzleSelectors.forEach(puzzle => puzzle.addEventListener("click", resetPuzzlePieces));
+
+
+
+	createPuzzlePieces(0);
 })();
