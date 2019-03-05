@@ -72,7 +72,7 @@
 		//debugger;
 		//empty thumbnail container
 		piecesBoard.innerHTML = "";
-		createPuzzlePieces(this.dataset.puzzleref);
+		createPuzzlePieces(this.dataset.puzzleref); 
 	}
 
 	// event handling down here
