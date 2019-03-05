@@ -30,7 +30,7 @@
 		piecesBoard.querySelectorAll('img').forEach(img => {
 			img.addEventListener("dragstart", function(e) {
 				//e.preventDefault(); 
-				console.log('draggin')
+				console.log('dragging it')
 
 				e.dataTransfer.setData("text/plain", this.id);
 	});
@@ -46,6 +46,19 @@
 		zone.addEventListener("drop", function(e) {
 			e.preventDefault();
 			console.log("you dropped");
+
+
+			let firstpuzDrop = e.target;
+				while (firstpuzDrop !== 0 && !firstpuzDrop.classList.contains("drop-zone")) {
+				firstpuzDrop = firstpuzDrop.parentNode;
+
+			}
+
+			if (firstpuzDrop && firstpuzDrop.childNodes.length > 0) {
+				return false;
+				e.preventDefault();
+
+			}
 
 			let piece = e.dataTransfer.getData("text/plain");
 			e.target.appendChild(document.querySelector(`#${piece}`));
