@@ -73,6 +73,10 @@
 		//empty thumbnail container
 		piecesBoard.innerHTML = "";
 		createPuzzlePieces(this.dataset.puzzleref); 
+		var images = document.getElementsByClassName("puzzle-image");
+    		while(images.length > 4){
+        	images[4].parentNode.removeChild(images[4]);
+	    }
 	}
 
 	// event handling down here
